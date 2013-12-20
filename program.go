@@ -149,6 +149,18 @@ func (program Program) UniformBlockBinding(index UniformBlockIndex, binding uint
 	C.glUniformBlockBinding(C.GLuint(program), C.GLuint(index), C.GLuint(binding))
 }
 
+func (program Program) GetProgramResourceIndex(programInterface GLenum, name string) ProgramResourceIndex {
+
+	cname := glString(name)
+	defer freeString(cname)
+
+	return ProgramResourceIndex(C.glGetProgramResourceIndex(C.GLuint(program), C.GLenum(programInterface), cname))
+}
+
+func (program Program) ShaderStorageBlockBinding(index ProgramResourceIndex, binding uint) {
+	C.glShaderStorageBlockBinding(C.GLuint(program), C.GLuint(index), C.GLuint(binding))
+}
+
 func (program Program) GetAttribLocation(name string) AttribLocation {
 
 	cname := glString(name)

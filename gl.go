@@ -804,6 +804,11 @@ func Materialiv(face GLenum, pname GLenum, params []int32) {
 	C.glMaterialiv(C.GLenum(face), C.GLenum(pname), (*C.GLint)(&params[0]))
 }
 
+//void glMemoryBarrier(GLbitfield barriers​)
+func MemoryBarrier(barriers GLbitfield) {
+	C.glMemoryBarrier(C.GLbitfield(barriers))
+}
+
 //void glNewList (uint list, GLenum mode)
 func NewList(list uint, mode GLenum) {
 	C.glNewList(C.GLuint(list), C.GLenum(mode))
